@@ -36,14 +36,12 @@
                         <i class="fab fa-codepen"></i>
                     </aside>
                 </nav>
-                <div id="menu-burger" class="opened">
+                <div id="menu-burger">
                     <i class="fas fa-bars"></i>
                     <div>
                         <ul>
                             <li><a href="#">Accueil</a></li>
-                            <li><a href="#">A propos</a></li>
                             <li><a href="#">Compétences</a></li>
-                            <li><a href="#">Formation</a></li>
                             <li><a href="#">Expérience</a></li>
                             <li><a href="#">Contact</a></li>
                         </ul>

@@ -32,47 +32,46 @@ $(document).ready(function(){
 	    var slideContact			= $('#slideContact');
 	    var isActive;
 
-		var burgerContainer = $('#menu-burger');
-		var burgerMenu = $('#menu-burger .fa-bars');
-		var burgerClose = $('#menu-burger .fa-times');
+
+/****** MENU MOBILE ******/
+		var burgerContainer = document.querySelector('#menu-burger');
+		var burgerMenu = document.querySelector('#menu-burger .fa-bars');
 		var burgerItems = document.querySelectorAll('#menu-burger ul li');
 
-    	burgerMenu.click(slideMenuItems);
+    	burgerMenu.addEventListener("click", onClickMenu.bind(this));
 
-    	function openMenu() {
-    		burgerContainer.addClass("opened");
-    		slideMenuItems(0);
-    		
-/*    		burgerItems.each(function() {
-    			setTimeout(function(){
-    			$(this).css('transform','translateX(0px)');
-
-    		},500);
-    		});*/
-
-/*    		for(i=0;i<burgerItems.length;i++){
-    			console.log(burgerItems[i].style.transform);
-    			var element = burgerItems[i];
-    			setTimeout(function(){
-    				element.style.transform = "translateX(-30px)";
-    			},500);
-    		}*/
+    	function onClickMenu() {
+    		if(burgerMenu.classList.contains('fa-times')){
+    			closeMenu();
+    			return;
+    		}
+    		burgerContainer.classList.add("opened");
+    		burgerMenu.classList.add("fa-times");
+    		burgerMenu = document.querySelector('.fa-times')
+    		burgerMenu.onclick = closeMenu;
+    		setTimeout(function(){slideMenuItems(0);},10);	
+    		console.log("openmenu");
     	}
 
-    	function slideMenuItems(param, time){
+    	function slideMenuItems(param){
+
     		param = isNaN(param) ? 0 : param;
-/*    		time = isNaN(time) ? 400 : time;
-*/
-    		/*setTimeout(function(){
-    		},time);*/
-				burgerItems[param].classList.add("slide");
 
-    		param++;
-    		if(param<burgerItems.length){
-    			setTimeout(function(){
-    				slideMenuItems(param,time);
+				burgerItems[param].classList.add("slide");;
+				if(param<burgerItems.length-1){
+					param++;
+					setTimeout(function(){slideMenuItems(param);},300);
+				}
+			}
 
-    			},400);
+    	function closeMenu(){
+    		burgerContainer.classList.remove("opened");
+    		burgerMenu.classList.remove("fa-times");
+    	
+    		burgerMenu.onclick = "";
+    		for(var i=0;i<burgerItems.length;i++) {
+    			burgerItems[i].classList.remove("slide");
+    			console.log("closemenu");
     		}
     	}
 
